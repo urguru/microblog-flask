@@ -1,26 +1,42 @@
 {% extends 'base.html' %} {% block content %}
-<div style="display: flex; justify-content: center; flex-direction: column">
-  <h1> <center>Sign In</center> </h1>
-  <form action="" method="POST" novalidate style="display: flex; justify-content: center; flex-direction: column">
+<div>
+  <h1><center>Sign In</center></h1>
+  <form action="" method="POST" novalidate>
     {{ form.hidden_tag() }}
     <p>
       {{ form.username.label }} <br />
-      {{form.username(size=32)}} <br>
+      {{form.username(size=32)}} <br />
       {% for error in form.username.errors %}
       <span> {{ error }}</span>
       {% endfor %}
     </p>
     <p>
       {{ form.password.label }} <br />
-      {{form.password(size=32)}} <br>
+      {{form.password(size=32)}} <br />
       {% for error in form.password.errors %}
       <span> {{ error }}</span>
       {% endfor %}
     </p>
     <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
     <p>{{ form.submit() }}</p>
+    <div class="new_user">
+      <p>
+        New user ...?
+        <a
+          href="{{ url_for('register') }}"
+          style="color: black;text-decoration: none"
+          >Click here to register</a
+        >
+      </p>
+      <p>
+        Forgot password...?
+        <a
+          href="{{ url_for('reset_password_request') }}"
+          style="color: black;text-decoration: none"
+          >Click Here</a
+        >
+      </p>
+    </div>
   </form>
-  <p>New user ...? <a href="{{ url_for('register')}}" style="color: black;text-decoration: none">Click here to register</a></p>
-  <p><a href="{{ url_for('reset_password_request')}}" style="color: black;text-decoration: none">Forgot password...? Click Here</a></p>
 </div>
 {% endblock %}
